@@ -1,0 +1,28 @@
+name: Testes Aula 10
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  testes-imc:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: aula10devops
+
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Executar testes
+        run: mvn test
