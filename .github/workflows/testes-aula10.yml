@@ -6,12 +6,8 @@ on:
   pull_request:
 
 jobs:
-  testes-imc:
+  testes:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: aula10devops
 
     steps:
       - name: Baixar codigo
@@ -24,5 +20,10 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      - name: Executar testes
+      - name: Testar IMC
+        working-directory: aula10devops
+        run: mvn test
+
+      - name: Testar Potencia
+        working-directory: aula10potencia
         run: mvn test
